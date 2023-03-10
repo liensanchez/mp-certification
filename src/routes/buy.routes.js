@@ -12,11 +12,22 @@ router.post('/', async (req, res) => {
   try {
     const body = req.body;
 
-    const response = 'holis ' + body.name
-
     const buyProducts = await service.buyOne(body) 
 
     res.json(buyProducts)
+  }catch (error) {
+    res.json(error)
+  }
+
+})
+
+router.get('/home', async (req, res) => {
+
+  try {
+
+    const response = 'this is the home'
+
+    res.json(response)
   }catch (error) {
     res.json(error)
   }

@@ -8,6 +8,7 @@ class BuyService {
 
     try {
       let preference = {
+/*         id: dev_24c65fb163bf11ea96500242ac130004, */
         items: [
           {
             title: title,
@@ -25,22 +26,32 @@ class BuyService {
           surname: lastName,
           email: email,
           phone: {
-            area_code: area,
-            number: phone
+              area_code: area,
+              number: phone
           },
           address: {
-            street_name: street,
-            street_number: numberStreet,
-            zip_code: postal
+              street_name: street,
+              street_number: numberStreet,
+              zip_code: postal
           }
-        }, 
+        },
         back_urls: {
-          success: 'http://localhost:3010/api/success',
-          failure: 'http://localhost:3010/api/failure',
-          pending: 'http://localhost:3010/api/pending',
+          success: 'http://localhost:3010/api/buy/success',
+          failure: 'http://localhost:3010/api/buy/failure',
+          pendig: 'http://localhost:3010/api/buy/pendig',
         },
         auto_return: 'approved',
         binary_mode: true,
+        payment_methods: {
+          excluded_payment_methods: [
+              {
+                  id: "visa"
+              }
+          ],
+          installments: 6
+        },
+        notification_url: "https://pf-voy-henry.vercel.app/",
+        statement_descriptor: "Voy Henry"
       }
   
       const response = await mercadopago.preferences.create(preference);
