@@ -12,13 +12,11 @@ router.post('/', async (req, res) => {
   try {
     const body = req.body;
 
-    const response = 'holis'
+    const response = 'holis ' + body.name
 
-    const buyProducts = await service.buyOne(body)
+    const buyProducts = await service.buyOne(body) 
 
-
-
-    res.json(response)
+    res.json(buyProducts)
   }catch (error) {
     res.json(error)
   }
