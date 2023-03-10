@@ -12,8 +12,21 @@
 //             |
 //            [_]
 
-require('dotenv').config();
+require('dotenv').config()
+const app = require('./app')
+const {PORT} = process.env
 
-const {PRUEBA} = process.env
 
-console.log(PRUEBA)
+
+async function main() {
+  try {
+    console.log('Connection has been established successfully.')
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`)
+    });
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+main();
