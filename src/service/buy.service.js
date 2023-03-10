@@ -1,11 +1,11 @@
 const mercadopago = require('mercadopago')
 
-class ProductsService {
+class BuyService {
   constructor() {}
 
 
   async buyOne({ id, title, price, email, quantity, picture, description, category, name, lastName, area, phone, street, numberStreet, postal }) {
-    let preference = {
+    /* let preference = {
       id: dev_24c65fb163bf11ea96500242ac130004,
       items: [
         {
@@ -34,9 +34,9 @@ class ProductsService {
         }
       },
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${email}`,
-        failure: 'http://localhost:3001/api/v1/products/fail',
-        pendig: 'http://localhost:3001/api/v1/products/pendig',
+        success: 'http://localhost:3010/api/success',
+        failure: 'http://localhost:3010/api/failure',
+        pendig: 'http://localhost:3010/api/pendig',
       },
       auto_return: 'approved',
       binary_mode: true,
@@ -52,20 +52,14 @@ class ProductsService {
       statement_descriptor: "Voy Henry"
     };
 
-    const product = await productModel.findOne({
-      where: {
-        id: id,
-      },
-    });
-
-    product.stock -= quantity;
-
-    await product.save();
-
     const response = await mercadopago.preferences.create(preference);
 
-    return response.body.init_point;
+    return response.body.init_point; */
+
+    console.log(name)
   }
+
+
 }
 
-module.exports = ProductsService;
+module.exports = BuyService;
