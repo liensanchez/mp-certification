@@ -1,10 +1,15 @@
 const { Router } = require('express')
+const { mercadopagoconfig } = require('../libs/mercadopago/mpconfig')
+mercadopagoconfig()
 const router = Router()
 
 router.post('/', async (req, res) => {
 
   try {
-    const response = await service.create(req.body)
+
+    const body = req.body
+
+    const response = await service.buyOne(body)
 
     res.json(response)
   }catch (error) {
