@@ -5,7 +5,7 @@ const buyRoutes = require('./buy.routes')
 
 function routesApi(app) {
 
-  app.use('/api/', router)
+  app.use('/api', router)
 
   router.use('/buy', buyRoutes)
 }

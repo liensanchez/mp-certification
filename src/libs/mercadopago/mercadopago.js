@@ -1,6 +1,5 @@
 const mercadopago = require("mercadopago");
 require('dotenv').config();
-
 const {
   ACCES_TOKEN
 } = process.env
