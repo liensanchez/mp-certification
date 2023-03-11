@@ -5,14 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certification</title>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script src="./index.js"></script>
 </head>
 <body>
-  <div>
-    <button id="sendBuy"> Buy It !</button>
-  </div>
-  <script src="./index.js"></script>
-<!--   // SDK MercadoPago.js -->
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <div class="cho-container"></div>
+  <script>
+    const mp = new MercadoPago('APP_USR-ff96fe80-6866-4888-847e-c69250754d38', {
+      locale: 'es-AR'
+    });
+  
+    mp.checkout({
+      preference: {
+        id: 'YOUR_PREFERENCE_ID'
+      },
+      render: {
+        container: '.cho-container',
+        label: 'Pagar',
+      }
+    });
+  </script>
 </body>
 
 </html>

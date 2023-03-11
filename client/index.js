@@ -1,6 +1,12 @@
+const mercadopago = new MercadoPago('APP_USR-ff96fe80-6866-4888-847e-c69250754d38', {
+  locale: 'es-AR' // The most common are: 'pt-BR', 'es-AR' and 'en-US'
+})
+
+
 let button = document.getElementById('sendBuy')
 
-button.addEventListener('click', buy)
+button.addEventListener('click',buy )
+
 
 const data = {
   "id_product": 1234,
@@ -30,10 +36,22 @@ function buy () {
     
   })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(function (preference) {
+    createCheckoutButton(preference.id);
+
+  })
   .catch(error => console.error(error))
 }
 
+
+function createCheckoutButton(preferenceId) {
+  // Initialize the checkout
+  mercadopago.checkout({
+    preference: {
+      id: preferenceId
+    }
+  });
+}
 
 
 /* 
