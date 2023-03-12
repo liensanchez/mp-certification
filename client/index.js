@@ -67,3 +67,5 @@ function createCheckoutButton(preferenceId) {
     console.log(error)
   })
 */
+
+/* hay q agregar mp */
