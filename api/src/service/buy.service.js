@@ -1,4 +1,12 @@
 const mercadopago = require('mercadopago')
+require('dotenv').config();
+const {
+  ACCES_TOKEN_TEST
+} = process.env
+
+mercadopago.configure({
+  access_token: ACCES_TOKEN_TEST,
+});
 
 class BuyService {
   constructor() {}
@@ -56,7 +64,7 @@ class BuyService {
   
       const response = await mercadopago.preferences.create(preference);
   
-      return response.body.init_point;
+      return response
     } catch (error) {
       console.error(error);
       throw new Error('An error occurred while creating preferences.');
