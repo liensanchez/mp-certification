@@ -27,8 +27,6 @@ const data = {
 }
 
 
-
-
 function buy () {
   fetch('http://localhost:3010/api/buy', {
     method: 'POST',
@@ -40,42 +38,22 @@ function buy () {
   })
   .then(response => response.json())
   .then(function (preference) {
-    createCheckoutButton(preference.id);
-    setTimeout(() => {
-      $(".container_payment").show(500).fadeIn();
-    }, 500);
+    console.log(preference)
+    createCheckoutButton(preference.body.id);
   })
   .catch(error => console.error(error))
 }
 
+
 function createCheckoutButton(preferenceId) {
   // Initialize the checkout
-  mercadopago.checkout({
+  mp.checkout({
     preference: {
       id: preferenceId
     },
     render: {
-      container: '#button-checkout', // Class name where the payment button will be displayed
-      label: 'Pagar!', // Change the payment button text (optional)
+      container: '#button-checkout', 
+      label: 'Pagar!', 
     }
   });
 }
-
-
-
-
-/* 
-  fetch('http://localhost:3010/api/buy/pendig', {
-    method: 'GET',
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    })
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => {
-    console.log(error)
-  })
-*/
-
-/* hay q agregar mp */
